@@ -4,31 +4,26 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import linkedinLogo from "../assets/linkedinLogo.png";
 import GoogleButton from "react-google-button";
 import "../Sass/LoginComponent.scss";
-import { async } from "abc";
 import { toast } from "react-toastify";
 
 export const LoginComponent = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
 
   const [credentials, setCredentials] = useState({});
   const login = async () => {
-    // event.preventDefault();
     try {
-      // await signInWithEmailAndPassword(auth, email, password);
 
       let res = await LoginAPI(credentials.email, credentials.password);
       toast.success("Signed In to Linkedin!");
     } catch (err) {
-      // alert(err.code);
-      // toast.error("Something went wrong!");
       toast.error(err.message);
-      // setError(error.message);
-      // alert(error);
-      // alert(Promise.PromiseResult.code);
     }
   };
+
+  const googleSignIn = () => {
+    let response = GoogleSignInAPI();
+    console.log(response);
+  };
+
   return (
     <div className="login-wrapper">
       <img src={linkedinLogo} className="linkedinLogo" />
@@ -39,10 +34,8 @@ export const LoginComponent = () => {
 
         <div className="auth-inputs">
           <input
-            // value={email}
             onChange={(event) => {
               setCredentials({ ...credentials, email: event.target.value });
-              // setEmail(event.target.value);
             }}
             type="email"
             className="common-input"
@@ -51,10 +44,8 @@ export const LoginComponent = () => {
           <input
             className="common-input"
             type="password"
-            // value={password}
             onChange={(event) => {
               setCredentials({ ...credentials, password: event.target.value });
-              // setPassword(event.target.value);
             }}
             placeholder="Password"
           />
@@ -65,12 +56,7 @@ export const LoginComponent = () => {
       </div>
       <hr className="hr-text" data-content="or" />
       <div className="google-btn-container">
-        <GoogleButton
-          className="google-btn"
-          onClick={() => {
-            console.log("Google Button Clicked");
-          }}
-        />
+        <GoogleButton className="google-btn" onClick={googleSignIn} />
         <p className="go-to-sign-in">
           New to LinkedIn? <span className="join-now">Join now</span>
         </p>
@@ -78,3 +64,4 @@ export const LoginComponent = () => {
     </div>
   );
 };
+
