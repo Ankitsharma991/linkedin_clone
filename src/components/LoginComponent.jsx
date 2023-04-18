@@ -13,6 +13,7 @@ export const LoginComponent = () => {
     try {
       let res = await LoginAPI(credentials.email, credentials.password);
       toast.success("Signed In to Linkedin!");
+      navigate("/home");
     } catch (err) {
       toast.error(err.message);
     }
