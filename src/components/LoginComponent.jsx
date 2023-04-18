@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { LoginAPI, GoogleSignInAPI } from "../api/AuthAPI.jsx";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import linkedinLogo from "../assets/linkedinLogo.png";
 import GoogleButton from "react-google-button";
 import "../Sass/LoginComponent.scss";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const LoginComponent = () => {
-
+  let navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
   const login = async () => {
     try {
-
       let res = await LoginAPI(credentials.email, credentials.password);
       toast.success("Signed In to Linkedin!");
     } catch (err) {
@@ -58,10 +57,12 @@ export const LoginComponent = () => {
       <div className="google-btn-container">
         <GoogleButton className="google-btn" onClick={googleSignIn} />
         <p className="go-to-sign-in">
-          New to LinkedIn? <span className="join-now">Join now</span>
+          New to LinkedIn?{" "}
+          <span className="join-now" onClick={() => navigate("/register")}>
+            Join now
+          </span>
         </p>
       </div>
     </div>
   );
 };
-
