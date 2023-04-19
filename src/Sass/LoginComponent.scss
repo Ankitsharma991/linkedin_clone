@@ -33,7 +33,10 @@ body {
   height: 100vh;
 
   .login-wrapper-inner {
-    margin-left: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .heading {
@@ -41,7 +44,7 @@ body {
     font-weight: 500;
     color: rgba(0, 0, 0, 0.9);
   }
-
+  
   .sub-heading {
     margin-top: -20px;
     font-family: system-ui;
@@ -87,8 +90,11 @@ body {
   width: 300px;
   border: 0;
   color: black;
-  margin-left: 200px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 1.5em;
   opacity: 0.5;
   &:before {
@@ -113,13 +119,15 @@ body {
 }
 
 .google-btn-container {
-  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .google-btn {
     width: 300px !important;
   }
   .go-to-sign-in {
-    margin-left: 50px;
     font-size: 18px;
   }
   .join-now {

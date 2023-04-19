@@ -1,0 +1,37 @@
+.post-status-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .post-status {
+    width: 80%;
+    height: 120px;
+    background-color: whitesmoke;
+    margin-top: 30px;
+    border: 1px solid #b7b7b7;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .open-post-modal {
+    width: 80%;
+    height: 50px;
+    text-align: left;
+    background-color: whitesmoke;
+    color: rgba(84, 84, 84, 0.894);
+    outline: none;
+    border: 1px solid #b7b7b7;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 15px;
+    font-family: system-ui;
+    font-weight: 600;
+    font-style: normal;
+  }
+  .open-post-modal:hover {
+    background-color: rgb(227, 224, 224);
+    outline: none;
+    color: rgba(84, 84, 84, 0.9);
+    border: 1px solid #b7b7b7;
+  }
+}

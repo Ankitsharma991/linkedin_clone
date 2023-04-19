@@ -56,12 +56,14 @@ const RegisterComponent = () => {
       <hr className="hr-text" data-content="or" />
       <div className="google-btn-container">
         <GoogleButton className="google-btn" onClick={googleSignIn} />
-        <p className="go-to-sign-in">
-          Already on LinkedIn?{" "}
-          <span className="Sign in" onClick={() => navigate("/")}>
-            Join now
-          </span>
-        </p>
+        <div className="link-div">
+          <p className="go-to-sign-in">
+            Already on LinkedIn?{" "}
+            <span className="join-now" onClick={() => navigate("/")}>
+              Sign in
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "antd",
         "appspot",
         "Avenir",
         "credentails",
@@ -8,6 +9,7 @@
         "firestore",
         "PCHJE",
         "signup",
-        "toastify"
+        "toastify",
+        "Topbar"
     ]
 }
