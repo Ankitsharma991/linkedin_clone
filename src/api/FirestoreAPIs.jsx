@@ -1,5 +1,5 @@
 import { firestore } from "../firebaseConfig";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 let dbRef = collection(firestore, "posts");
@@ -14,4 +14,14 @@ export const postStatus = (status) => {
     .catch((err) => {
       toast.error(err.message);
     });
+};
+
+export const getStatus = (setAllStatus) => {
+  onSnapshot(dbRef, (response) => {
+    setAllStatus(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    );
+  });
 };
