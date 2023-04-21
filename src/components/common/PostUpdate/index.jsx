@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { postStatus } from "../../../api/FirestoreAPIs";
 import "./index.scss";
 import ModalComponent from "../Modal";
 
 import { Button } from "antd";
+
 export default function PostStatus() {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
-  const sendStatus = ()=>{
-
-  }
+  const sendStatus = () => {
+    postStatus(status);
+  };
   return (
     <div className="post-status-main">
       <div className="post-status">
