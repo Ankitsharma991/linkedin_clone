@@ -9,10 +9,12 @@ import { useNavigate } from "react-router-dom";
 const RegisterComponent = () => {
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
-  const login = async () => {
+  const register = async () => {
     try {
-      let res = await RegisterAPI(credentials.email, credentials.password);
-      toast.success("Account Created!!");
+      // let res = 
+      await RegisterAPI(credentials.email, credentials.password);
+      // console.log(res)
+      toast.success("You are registered now!")
       navigate("/home");
     } catch (err) {
       toast.error(err.message);
@@ -20,8 +22,8 @@ const RegisterComponent = () => {
   };
 
   const googleSignIn = () => {
-    let response = GoogleSignInAPI();
-    console.log(response);
+    // let response = 
+    GoogleSignInAPI();
   };
 
   return (
@@ -49,7 +51,7 @@ const RegisterComponent = () => {
             placeholder="Password (6 or more characters)"
           />
         </div>
-        <button onClick={login} className="login-btn">
+        <button onClick={register} className="login-btn">
           Agree & Join
         </button>
       </div>
