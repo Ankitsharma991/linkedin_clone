@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { postStatus, getStatus } from "../../../api/FirestoreAPIs";
 import "./index.scss";
+import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 import ModalComponent from "../Modal";
 import PostsCard from "../PostsCard/index.jsx";
 import { Button } from "antd";
@@ -9,8 +10,15 @@ export default function PostStatus() {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatuses, setAllStatus] = useState([]);
-  const sendStatus = () => {
-    postStatus(status);
+  const sendStatus = async () => {
+    let object = {
+      status: status,
+      timeStamp: getCurrentTimeStamp("LLL"),
+    };
+
+    await postStatus(object);
+    await setModalOpen(false);
+    await setStatus("");
   };
 
   useMemo(() => {
