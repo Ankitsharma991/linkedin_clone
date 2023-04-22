@@ -7,6 +7,7 @@ import PostsCard from "../PostsCard/index.jsx";
 import { Button } from "antd";
 
 export default function PostStatus() {
+  let userEmail = localStorage.getItem("userEmail");
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatuses, setAllStatus] = useState([]);
@@ -14,6 +15,7 @@ export default function PostStatus() {
     let object = {
       status: status,
       timeStamp: getCurrentTimeStamp("LLL"),
+      userEmail: userEmail,
     };
 
     await postStatus(object);

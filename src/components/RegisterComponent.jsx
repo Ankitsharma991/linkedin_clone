@@ -11,10 +11,10 @@ const RegisterComponent = () => {
   const [credentials, setCredentials] = useState({});
   const register = async () => {
     try {
-      // let res = 
-      await RegisterAPI(credentials.email, credentials.password);
-      // console.log(res)
-      toast.success("You are registered now!")
+      let res = await RegisterAPI(credentials.email, credentials.password);
+      localStorage.setItem("userEmail", res.user.email);
+
+      toast.success("You are registered now!");
       navigate("/home");
     } catch (err) {
       toast.error(err.message);
@@ -22,7 +22,7 @@ const RegisterComponent = () => {
   };
 
   const googleSignIn = () => {
-    // let response = 
+    // let response =
     GoogleSignInAPI();
   };
 

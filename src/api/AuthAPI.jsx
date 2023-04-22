@@ -34,3 +34,11 @@ export const GoogleSignInAPI = () => {
     return err;
   }
 };
+
+export const onLogout = () => {
+  try {
+    signOut(auth);
+  } catch (err) {
+    return err;
+  }
+};

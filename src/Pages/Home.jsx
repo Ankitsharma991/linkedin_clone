@@ -7,7 +7,7 @@ import { Loader } from "../components/common/Loader";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
-  let navigate = useNavigate();
+  let navigate = useNavigate()
   useEffect(() => {
     onAuthStateChanged(auth, (res) => {
       if (!res?.accessToken) {

@@ -16,7 +16,7 @@ export default function Topbar() {
   let navigate = useNavigate();
   const goToRoute = (route) => {
     navigate(route);
-    console.log(route);
+    // console.log(route)
   };
   return (
     <div className="topbar-main">
@@ -25,7 +25,9 @@ export default function Topbar() {
         <AiOutlineHome
           size={30}
           className="react-icon"
-          onClick={goToRoute("/home")}
+          onClick={()=>{
+            goToRoute("/home")
+          }}
         />
         <AiOutlineUserSwitch size={30} className="react-icon" onClick={()=>{goToRoute("/profile")}} />
         <AiOutlineMessage size={30} className="react-icon" />
