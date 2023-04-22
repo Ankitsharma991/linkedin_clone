@@ -1,5 +1,5 @@
 import React from "react";
-import LinkedInLogo from "../assets/linkedinLogo.png";
+import LinkedInLogo from "../../../assets/linkedinLogo.png";
 import {
   AiOutlineHome,
   AiOutlineUserSwitch,
@@ -7,7 +7,7 @@ import {
   AiOutlineMessage,
   AiOutlineBell,
 } from "react-icons/ai";
-import user from "../assets/user.png";
+import user from "../../../assets/user.png";
 import { BsBriefcase } from "react-icons/bs";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";

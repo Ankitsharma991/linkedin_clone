@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { RegisterAPI, GoogleSignInAPI } from "../api/AuthAPI.jsx";
-import linkedinLogo from "../assets/linkedinLogo.png";
+import { LoginAPI, GoogleSignInAPI } from "../../api/AuthAPI.jsx";
+import linkedinLogo from "../../assets/linkedinLogo.png";
 import GoogleButton from "react-google-button";
-import "../Sass/LoginComponent.scss";
+import "../../Sass/LoginComponent.scss";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const RegisterComponent = () => {
+export const LoginComponent = () => {
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
-  const register = async () => {
+  const login = async () => {
     try {
-      let res = await RegisterAPI(credentials.email, credentials.password);
+      let res = await LoginAPI(credentials.email, credentials.password);
+      toast.success("Signed In to Linkedin!");
       localStorage.setItem("userEmail", res.user.email);
-
-      toast.success("You are registered now!");
       navigate("/home");
     } catch (err) {
       toast.error(err.message);
@@ -22,8 +21,8 @@ const RegisterComponent = () => {
   };
 
   const googleSignIn = () => {
-    // let response =
-    GoogleSignInAPI();
+    let response = GoogleSignInAPI();
+    console.log(response);
   };
 
   return (
@@ -31,7 +30,8 @@ const RegisterComponent = () => {
       <img src={linkedinLogo} className="linkedinLogo" />
 
       <div className="login-wrapper-inner">
-        <h1 className="heading">Make the most of your professional life</h1>
+        <h1 className="heading">Sign in</h1>
+        <p className="sub-heading">Stay updated on your professional world</p>
 
         <div className="auth-inputs">
           <input
@@ -40,7 +40,7 @@ const RegisterComponent = () => {
             }}
             type="email"
             className="common-input"
-            placeholder="Email or Phone number"
+            placeholder="Email or Phone"
           />
           <input
             className="common-input"
@@ -48,11 +48,11 @@ const RegisterComponent = () => {
             onChange={(event) => {
               setCredentials({ ...credentials, password: event.target.value });
             }}
-            placeholder="Password (6 or more characters)"
+            placeholder="Password"
           />
         </div>
-        <button onClick={register} className="login-btn">
-          Agree & Join
+        <button onClick={login} className="login-btn">
+          Sign in
         </button>
       </div>
       <hr className="hr-text" data-content="or" />
@@ -60,9 +60,9 @@ const RegisterComponent = () => {
         <GoogleButton className="google-btn" onClick={googleSignIn} />
         <div className="link-div">
           <p className="go-to-sign-in">
-            Already on LinkedIn?{" "}
-            <span className="join-now" onClick={() => navigate("/")}>
-              Sign in
+            New to LinkedIn?{" "}
+            <span className="join-now" onClick={() => navigate("/register")}>
+              Join now
             </span>
           </p>
         </div>
@@ -70,5 +70,3 @@ const RegisterComponent = () => {
     </div>
   );
 };
-
-export default RegisterComponent;

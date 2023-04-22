@@ -1,5 +1,5 @@
 import React from "react";
-import { onLogout } from "../api/AuthAPI";
+import { onLogout } from "../../../api/AuthAPI";
 import "./index.scss";
 export default function ProfilePage() {
   return (
