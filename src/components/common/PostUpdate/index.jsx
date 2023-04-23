@@ -18,11 +18,11 @@ export default function PostStatus({ currentUser }) {
       alert("Username is null");
       return;
     }
-    
+
     let object = {
       status: status,
       timeStamp: getCurrentTimeStamp("LLL"),
-      userEmail: userEmail,
+      userEmail: currentUser.email,
       userName: currentUser.name,
       postID: getUniqueID(),
     };
