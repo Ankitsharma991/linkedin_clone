@@ -5,7 +5,7 @@ import Profile from "../Pages/Profile";
 
 export default function ProfileLayout() {
   const [currentUser, setCurrentUser] = useState({});
-  // console.log("ProfileLayout: ",currentUser)
+  console.log("ProfileLayout: ",currentUser)
   useMemo(() => {
     getCurrentUser(setCurrentUser);
   }, []);

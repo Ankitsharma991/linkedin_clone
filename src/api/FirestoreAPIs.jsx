@@ -38,7 +38,7 @@ export const getCurrentUser = (setCurrentUser) => {
     setCurrentUser(
       response.docs
         .map((docs) => {
-          return { ...docs.data(), userId: docs.id };
+          return { ...docs.data(), id: docs.id };
         })
         .filter((item) => {
           return item.email === localStorage.getItem("userEmail");

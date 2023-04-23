@@ -22,7 +22,7 @@ export default function PostStatus({ currentUser }) {
     let object = {
       status: status,
       timeStamp: getCurrentTimeStamp("LLL"),
-      userEmail: currentUser.email,
+      userEmail: userEmail,
       userName: currentUser.name,
       postID: getUniqueID(),
     };
@@ -54,9 +54,9 @@ export default function PostStatus({ currentUser }) {
       <div>
         {allStatuses.map((posts) => {
           return (
-            <>
+            <div key={posts.key}>
               <PostsCard posts={posts} />
-            </>
+            </div>
           );
         })}
       </div>
