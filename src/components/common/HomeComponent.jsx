@@ -1,9 +1,9 @@
 import React from "react";
 import PostStatus from "./PostUpdate";
-export const HomeComponent = () => {
+export const HomeComponent = ({ currentUser }) => {
   return (
     <div className="home-component">
-      <PostStatus />
+      <PostStatus currentUser={currentUser} />
     </div>
   );
 };

@@ -4,9 +4,10 @@ import "./index.scss";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 import ModalComponent from "../Modal";
 import PostsCard from "../PostsCard/index.jsx";
+import { getUniqueID } from "../../../helpers/getUniqueId";
 import { Button } from "antd";
 
-export default function PostStatus() {
+export default function PostStatus({ currentUser }) {
   let userEmail = localStorage.getItem("userEmail");
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
@@ -15,7 +16,9 @@ export default function PostStatus() {
     let object = {
       status: status,
       timeStamp: getCurrentTimeStamp("LLL"),
-      userEmail: userEmail,
+      userEmail: currentUser.email,
+      userName: currentUser.name,
+      postID: getUniqueID(),
     };
 
     await postStatus(object);
@@ -26,7 +29,7 @@ export default function PostStatus() {
   useMemo(() => {
     getStatus(setAllStatus);
   }, []);
-  console.log(allStatuses);
+  // console.log(allStatuses);
   return (
     <div className="post-status-main">
       <div className="post-status">

@@ -22,7 +22,7 @@ export const LoginComponent = () => {
 
   const googleSignIn = () => {
     let response = GoogleSignInAPI();
-    console.log(response);
+    // console.log(response);
   };
 
   return (

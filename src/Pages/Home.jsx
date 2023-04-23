@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { Loader } from "../components/common/Loader/Loader";
 
-const Home = () => {
+const Home = ({ currentUser }) => {
   const [loading, setLoading] = useState(true);
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (res) => {
       if (!res?.accessToken) {
@@ -17,7 +17,7 @@ const Home = () => {
       }
     });
   }, []);
-  return loading ? <Loader /> : <HomeComponent />;
+  return loading ? <Loader /> : <HomeComponent currentUser={currentUser} />;
 };
 
 export default Home;

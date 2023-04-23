@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RegisterAPI, GoogleSignInAPI } from "../../api/AuthAPI.jsx";
 import linkedinLogo from "../../assets/linkedinLogo.png";
+import { postUserData } from "../../api/FirestoreAPIs.jsx";
 import GoogleButton from "react-google-button";
 import "../../Sass/LoginComponent.scss";
 import { toast } from "react-toastify";
@@ -13,7 +14,7 @@ const RegisterComponent = () => {
     try {
       let res = await RegisterAPI(credentials.email, credentials.password);
       localStorage.setItem("userEmail", res.user.email);
-
+      postUserData({ name: credentials.name, email: credentials.email });
       toast.success("You are registered now!");
       navigate("/home");
     } catch (err) {
@@ -34,6 +35,15 @@ const RegisterComponent = () => {
         <h1 className="heading">Make the most of your professional life</h1>
 
         <div className="auth-inputs">
+          <input
+            onChange={(event) => {
+              setCredentials({ ...credentials, name: event.target.value });
+            }}
+            type="text"
+            className="common-input"
+            placeholder="Your name"
+          />
+
           <input
             onChange={(event) => {
               setCredentials({ ...credentials, email: event.target.value });
@@ -61,7 +71,7 @@ const RegisterComponent = () => {
         <div className="link-div">
           <p className="go-to-sign-in">
             Already on LinkedIn?{" "}
-            <span className="join-now" onClick={() => navigate("/")}>
+            <span className="join-now" onClick={() => navigate("/login")}>
               Sign in
             </span>
           </p>
