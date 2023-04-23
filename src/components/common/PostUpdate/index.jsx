@@ -12,11 +12,17 @@ export default function PostStatus({ currentUser }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatuses, setAllStatus] = useState([]);
+
   const sendStatus = async () => {
+    if (!currentUser || !currentUser.name) {
+      alert("Username is null");
+      return;
+    }
+    
     let object = {
       status: status,
       timeStamp: getCurrentTimeStamp("LLL"),
-      userEmail: currentUser.email,
+      userEmail: userEmail,
       userName: currentUser.name,
       postID: getUniqueID(),
     };
