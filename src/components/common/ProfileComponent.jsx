@@ -4,7 +4,7 @@ import Topbar from "./Topbar";
 export default function ProfileComponent({ currentUser }) {
   return (
     <div>
-      <ProfileCard currentUser={currentUser} />
+      <ProfileCard currentUser={currentUser}  />
     </div>
   );
 }
