@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import "./index.scss";
+import { editProfile } from "../../../api/FirestoreAPIs";
 
-export default function ProfileEdit({ onEdit }) {
+export default function ProfileEdit({ currentUser, onEdit }) {
   const [editInputs, setEditInputs] = useState({});
   const getInput = (event) => {
     let { name, value } = event.target;
     let input = { [name]: value };
     setEditInputs({ ...editInputs, ...input });
-};
-console.log(editInputs);
+  };
+
+  const updateProfileData = async () => {
+    await editProfile(currentUser?.id, editInputs);
+    await onEdit();
+  };
+
   return (
     <div className="profile-card">
       <div className="edit-btn">
@@ -45,6 +51,11 @@ console.log(editInputs);
           placeholder="College"
           name="college"
         />
+      </div>
+      <div className="save-container">
+        <button className="save-btn" onClick={updateProfileData}>
+          Save
+        </button>
       </div>
     </div>
   );
