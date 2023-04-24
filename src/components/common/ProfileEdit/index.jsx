@@ -13,7 +13,7 @@ export default function ProfileEdit({ currentUser, onEdit }) {
   const updateProfileData = async () => {
     await editProfile(currentUser?.id, editInputs);
     await onEdit();
-  };
+  }
 
   return (
     <div className="profile-card">

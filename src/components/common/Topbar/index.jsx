@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LinkedInLogo from "../../../assets/linkedinLogo.png";
 import {
   AiOutlineHome,
@@ -11,6 +11,7 @@ import user from "../../../assets/user.png";
 import { BsBriefcase } from "react-icons/bs";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
+import ProfilePopup from "../ProfilePopup";
 
 export default function Topbar() {
   let navigate = useNavigate();
@@ -18,6 +19,13 @@ export default function Topbar() {
     navigate(route);
     // console.log(route)
   };
+
+  const [isShow, setIsShow] = useState(false);
+
+  const popup = () => {
+    setIsShow(!isShow);
+  };
+
   return (
     <div className="topbar-main">
       <img src={LinkedInLogo} className="linkedin-logo" alt="" />
@@ -25,17 +33,45 @@ export default function Topbar() {
         <AiOutlineHome
           size={30}
           className="react-icon"
-          onClick={()=>{
-            goToRoute("/home")
+          onClick={() => {
+            goToRoute("/home");
           }}
         />
-        <AiOutlineUserSwitch size={30} className="react-icon" onClick={()=>{goToRoute("/profile")}} />
+        <AiOutlineUserSwitch
+          size={30}
+          className="react-icon"
+          onClick={() => {
+            goToRoute("/profile");
+          }}
+        />
         <AiOutlineMessage size={30} className="react-icon" />
-        <BsBriefcase size={30} className="react-icon" onClick={()=>{goToRoute("/")}} />
+        <BsBriefcase
+          size={30}
+          className="react-icon"
+          onClick={() => {
+            goToRoute("/");
+          }}
+        />
         <AiOutlineSearch size={30} className="react-icon" />
         <AiOutlineBell size={30} className="react-icon" />
       </div>
-      <img src={user} alt="user" className="user-logo" />
+      <img
+        src={user}
+        onClick={() => {
+          popup();
+        }}
+        alt="user"
+        className="user-logo"
+      />
+      <div>
+        {isShow ? (
+          <div className="popup-position">
+            <ProfilePopup />
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }
