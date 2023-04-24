@@ -7,6 +7,39 @@
   padding: 20px;
   position: relative;
 
+  .profile-info {
+    display: flex;
+    justify-content: space-between;
+
+    .right-info {
+      margin-top: 25px;
+      margin-right: 20px;
+      .college,
+      .company {
+        font-family: system-ui;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.9);
+        font-size: 14px;
+        // line-height: 18px;
+        line-height: 30px;
+      }
+
+      .company {
+        margin-top: -15px;
+      }
+      .college:hover {
+        color: #0a66c2;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .company:hover {
+        color: #0a66c2;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
   .edit-btn {
     position: absolute;
     right: 20px;
@@ -21,10 +54,14 @@
     font-weight: 600;
     font-size: 24px;
   }
-  .userEmail {
-    margin-top: -20px;
+
+  .heading {
     font-family: system-ui;
-    color: rgba(0, 0, 0, 0.9);
     font-size: 16px;
+    font-weight: 400;
+    margin-top: -25px;
+    width: 320px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.9);
   }
 }
