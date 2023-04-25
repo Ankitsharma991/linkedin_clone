@@ -54,7 +54,7 @@ export default function PostStatus({ currentUser }) {
       <div>
         {allStatuses.map((posts) => {
           return (
-            <div key={posts.key}>
+            <div key={posts.id}>
               <PostsCard posts={posts} />
             </div>
           );

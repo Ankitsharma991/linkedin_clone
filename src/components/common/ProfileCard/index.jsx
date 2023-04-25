@@ -14,7 +14,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
   const [allStatuses, setAllStatus] = useState([]);
 
   useMemo(() => {
-    getStatus(setAllStatus);
+    // getStatus(setAllStatus);
     if (location?.state?.id) {
       getSingleStatus(setAllStatus, location?.state?.id);
     }
@@ -22,7 +22,6 @@ export default function ProfileCard({ currentUser, onEdit }) {
       getSingleUser(setCurrentProfile, location?.state?.email);
     }
   }, []);
-
   return (
     <>
       <div className="profile-card">
@@ -33,18 +32,32 @@ export default function ProfileCard({ currentUser, onEdit }) {
         <div className="profile-info">
           <div>
             <h3 className="userName">
-              {currentUser.name ? currentUser.name : ""}
+              {Object.values(currentProfile).length === 0
+                ? currentUser.name
+                : currentProfile?.name}
             </h3>
-            <p className="heading">{currentUser.headline}</p>
-            <p>{currentUser.location ? currentUser.location : ""}</p>
+            <p className="heading">
+              {Object.values(currentProfile).length === 0
+                ? currentUser.headline
+                : currentProfile?.headline}
+            </p>
+            <p>
+              {Object.values(currentProfile).length === 0
+                ? currentUser.location
+                : currentProfile?.location}
+            </p>
           </div>
 
           <div className="right-info">
             <p className="college">
-              {currentUser.college ? currentUser.college : ""}
+              {Object.values(currentProfile).length === 0
+                ? currentUser.college
+                : currentProfile?.college}
             </p>
             <p className="company">
-              {currentUser.company ? currentUser.company : ""}
+              {Object.values(currentProfile).length === 0
+                ? currentUser.company
+                : currentProfile?.company}
             </p>
           </div>
         </div>

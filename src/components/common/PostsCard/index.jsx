@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function PostsCard({ posts, id }) {
   let navigate = useNavigate();
-  console.log(posts.userEmail);
+  // console.log(posts.userEmail);
 
   return (
     <div className="posts-card" key={id}>
