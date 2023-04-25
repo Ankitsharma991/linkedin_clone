@@ -35,7 +35,7 @@ export default function PostStatus({ currentUser }) {
   useMemo(() => {
     getStatus(setAllStatus);
   }, []);
-  // console.log(allStatuses);
+  // console.log("Available statuses are : ", allStatuses.status);
   return (
     <div className="post-status-main">
       <div className="post-status">
