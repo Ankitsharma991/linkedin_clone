@@ -13,8 +13,16 @@ export default function ProfileCard({ currentUser, onEdit }) {
   const [currentProfile, setCurrentProfile] = useState({});
   const [allStatuses, setAllStatus] = useState([]);
 
+  // console.log(
+  //   "currentProfile -> ",
+  //   currentProfile,
+  //   " and ",
+  //   "currentUser-> ",
+  //   currentUser
+  // )
+
   useMemo(() => {
-    // getStatus(setAllStatus);
+    getStatus(setAllStatus);
     if (location?.state?.id) {
       getSingleStatus(setAllStatus, location?.state?.id);
     }
@@ -22,6 +30,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
       getSingleUser(setCurrentProfile, location?.state?.email);
     }
   }, []);
+
   return (
     <>
       <div className="profile-card">

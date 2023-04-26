@@ -25,6 +25,7 @@ export default function PostStatus({ currentUser }) {
       userEmail: userEmail,
       userName: currentUser.name,
       postID: getUniqueID(),
+      userID: currentUser.id,
     };
 
     await postStatus(object);

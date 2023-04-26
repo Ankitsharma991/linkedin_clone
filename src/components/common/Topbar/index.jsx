@@ -66,7 +66,7 @@ export default function Topbar() {
       <div>
         {isShow ? (
           <div className="popup-position">
-            <ProfilePopup />
+            <ProfilePopup/>
           </div>
         ) : (
           ""
