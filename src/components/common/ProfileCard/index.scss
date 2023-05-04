@@ -27,6 +27,7 @@
       .company {
         margin-top: -15px;
       }
+
       .college:hover {
         color: #0a66c2;
         text-decoration: underline;
@@ -39,12 +40,28 @@
       }
     }
   }
+  .skill-label {
+    font-weight: 600;
+    
+  }
+  .website {
+    color: #004c75 !important;
+  }
+  .website:hover {
+    color: #004c75 !important;
+  }
 
   .edit-btn {
     position: absolute;
     right: 20px;
-    button {
+    .edit-icon {
       cursor: pointer;
+      padding: 10px;
+    }
+    .edit-icon:hover {
+      background-color: rgb(197, 197, 197);
+      border-radius: 50%;
+      padding: 10px;
     }
   }
 

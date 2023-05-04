@@ -33,6 +33,7 @@ $linkedinBlue3: #004c75;
 }
 
 .common-textArea {
+  height: 20px;
   padding: 10px;
   background-color: white;
   outline: none;
@@ -45,6 +46,25 @@ $linkedinBlue3: #004c75;
 }
 
 .common-textArea:focus {
+  outline: 1px solid $linkedinBlue1;
+}
+.common-text-area {
+  padding: 10px;
+  background-color: white;
+  outline: none;
+  border: 1px solid #212121;
+  color: #212121;
+  border-radius: 3px;
+  font-family: system-ui;
+  font-size: 16px;
+  margin: -10px 0px;
+}
+::placeholder {
+  font-family: system-ui;
+  font-size: 16px;
+}
+
+.common-text-area:focus {
   outline: 1px solid $linkedinBlue1;
 }
 ::placeholder {

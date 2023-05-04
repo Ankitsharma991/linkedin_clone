@@ -15,7 +15,7 @@ export default function ProfileComponent({ currentUser }) {
         <ProfileEdit onEdit={onEdit} currentUser={currentUser} />
       ) : (
         <ProfileCard currentUser={currentUser} onEdit={onEdit} />
-      )}{" "}
+      )}
     </div>
   );
 }
