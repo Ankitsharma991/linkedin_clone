@@ -6,6 +6,38 @@
   padding: 7px 10px;
   cursor: pointer;
   margin-bottom: -20px;
+
+  .like-comment {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+
+  .comment-input {
+    height: 35px;
+    background-color: whitesmoke;
+    padding-left: 10px;
+    border-radius: 30px;
+    border: 1px solid #737373;
+    color: #949494;
+    font-family: system-ui;
+  }
+  .comment-input:focus {
+    outline: 1px solid #949494;
+    color: #949494;
+  }
+  .add-comment-btn {
+    width: 150px;
+    height: 35px;
+    background-color: #0a66c2;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
   .hr-line {
     margin-top: -17px;
     hr {
@@ -23,7 +55,7 @@
     color: #0a66c2;
     text-decoration: underline;
   }
-  .likes-inner {
+  .likes-comment-inner {
     display: flex;
     align-items: center;
     margin-top: -20px;
