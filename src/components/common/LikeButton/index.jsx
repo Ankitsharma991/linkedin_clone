@@ -2,13 +2,19 @@ import React, { useMemo, useState } from "react";
 import "./index.scss";
 // import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai";
-
-import { likePost, getLikesByUser } from "../../../api/FirestoreAPIs";
-export default function LikeButton({ userId, postId }) {
+import { getCurrentTimeStamp } from "../../../helpers/useMoment";
+import {
+  likePost,
+  getLikesByUser,
+  postComment,
+  getComments,
+} from "../../../api/FirestoreAPIs";
+export default function LikeButton({ userId, postId, currentUser }) {
   const [likesCount, setLikesCount] = useState(0);
   const [liked, setLiked] = useState(false);
   const [showCommentBox, setShowCommentBox] = useState(false);
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
 
   const handleLike = () => {
     likePost(userId, postId, liked);
@@ -17,9 +23,16 @@ export default function LikeButton({ userId, postId }) {
   const getComment = (event) => {
     setComment(event.target.value);
   };
+  console.log(currentUser);
+
+  const addComment = () => {
+    postComment(postId, comment, getCurrentTimeStamp("LLL"), currentUser?.name);
+    setComment("");
+  };
 
   useMemo(() => {
     getLikesByUser(userId, postId, setLiked, setLikesCount);
+    getComments(postId, setComments);
   }, [userId, postId]);
   return (
     <div className="like-container">
@@ -52,12 +65,31 @@ export default function LikeButton({ userId, postId }) {
       {showCommentBox ? (
         <>
           <input
-            onClick={getComment}
+            onChange={getComment}
             placeholder="Add a Comment"
             className="comment-input"
             name="comment"
+            value={comment}
           />
-          <button className="add-comment-btn">Add Comment</button>
+          <button className="add-comment-btn" onClick={addComment}>
+            Add Comment
+          </button>
+          {comments.length > 0 ? (
+            comments.map((comment) => {
+              return (
+                <div className="all-comments">
+                  <p className="name">{currentUser.name}</p>
+                  <p className="comment">{comment.comment}</p>
+
+                  <p className="timestamp">{comment.timestamp}</p>
+
+                  {/* <p>•</p> */}
+                </div>
+              );
+            })
+          ) : (
+            <></>
+          )}
         </>
       ) : (
         <></>

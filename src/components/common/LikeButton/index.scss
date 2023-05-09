@@ -17,14 +17,15 @@
     background-color: whitesmoke;
     padding-left: 10px;
     border-radius: 30px;
-    border: 1px solid #737373;
+    border: 1px solid #4b4b4b;
     color: #949494;
     font-family: system-ui;
   }
   .comment-input:focus {
-    outline: 1px solid #949494;
-    color: #949494;
+    outline: 1px solid #4b4b4b;
+    color: #4b4b4b;
   }
+
   .add-comment-btn {
     width: 150px;
     height: 35px;
@@ -37,7 +38,28 @@
     margin-top: 15px;
     margin-bottom: 15px;
   }
-
+  .all-comments {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(227, 227, 227);
+    border-radius: 10px;
+    position: relative;
+    justify-content: center;
+    margin: 10px 0;
+    .name {
+      color: #212121;
+      text-decoration: none;
+    }
+    .comment {
+      margin-left: 10px;
+      margin-top: 0px;
+    }
+    .timestamp {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
   .hr-line {
     margin-top: -17px;
     hr {
