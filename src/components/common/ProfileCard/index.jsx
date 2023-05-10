@@ -9,20 +9,22 @@ import PostsCard from "../PostsCard";
 import { HiOutlinePencil } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 import { uploadImage as uploadImageApI } from "../../../api/imageUpload";
+import FileUploadModal from "../FileUploadModal";
 
 export default function ProfileCard({ currentUser, onEdit }) {
   let location = useLocation();
   const [currentProfile, setCurrentProfile] = useState({});
   const [allStatuses, setAllStatus] = useState([]);
   const [currentImage, setCurrentImage] = useState([]);
-  // const [imageLink, setImageLink] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const getImage = (event) => {
     setCurrentImage(event.target.files[0]);
   };
 
   const uploadImage = () => {
-    uploadImageApI(currentImage, currentUser.id);
+    uploadImageApI(currentImage, currentUser.id, setModalOpen, setProgress, setCurrentImage);
   };
 
   useMemo(() => {
@@ -35,24 +37,30 @@ export default function ProfileCard({ currentUser, onEdit }) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   editProfile(currentUser?.id, imageLink);
-  // }, [imageLink]);
-
-  // console.log("currentUser", currentUser);
-
   return (
     <>
+      <FileUploadModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        getImage={getImage}
+        uploadImage={uploadImage}
+        currentImage={currentImage}
+        progress={progress}
+      />
       <div className="profile-card">
-        <input type="file" onChange={getImage} />
-        <button onClick={uploadImage}>Upload</button>
         <div className="edit-btn">
           <HiOutlinePencil className="edit-icon" onClick={onEdit} />
         </div>
 
         <div className="profile-info">
           <div>
-            <img className="profile-image" src={currentUser?.imageLink} />
+            <img
+              onClick={() => {
+                setModalOpen(true);
+              }}
+              className="profile-image"
+              src={currentUser?.imageLink}
+            />
             <h3 className="userName">
               {Object.values(currentProfile).length === 0
                 ? currentUser.name

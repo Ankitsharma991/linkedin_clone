@@ -23,7 +23,7 @@ export default function LikeButton({ userId, postId, currentUser }) {
   const getComment = (event) => {
     setComment(event.target.value);
   };
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const addComment = () => {
     postComment(postId, comment, getCurrentTimeStamp("LLL"), currentUser?.name);

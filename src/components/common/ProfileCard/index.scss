@@ -17,6 +17,8 @@
       border-radius: 50%;
       border: 2px solid #cacaca;
       padding: 5px;
+      cursor: pointer;
+      object-fit: contain;
       // clip-path: circle(50% at 50% 50%);
     }
     .right-info {
