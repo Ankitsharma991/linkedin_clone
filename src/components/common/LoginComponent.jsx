@@ -40,6 +40,7 @@ export const LoginComponent = () => {
             }}
             type="email"
             className="common-input"
+            style={{ height: 30 }}
             placeholder="Email or Phone"
           />
           <input
@@ -48,6 +49,7 @@ export const LoginComponent = () => {
             onChange={(event) => {
               setCredentials({ ...credentials, password: event.target.value });
             }}
+            style={{ height: 30 }}
             placeholder="Password"
           />
         </div>

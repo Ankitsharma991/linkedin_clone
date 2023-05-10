@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./index.scss";
 import {
   getStatus,
@@ -8,19 +8,22 @@ import {
 import PostsCard from "../PostsCard";
 import { HiOutlinePencil } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
+import { uploadImage as uploadImageApI } from "../../../api/imageUpload";
 
 export default function ProfileCard({ currentUser, onEdit }) {
   let location = useLocation();
   const [currentProfile, setCurrentProfile] = useState({});
   const [allStatuses, setAllStatus] = useState([]);
+  const [currentImage, setCurrentImage] = useState([]);
+  // const [imageLink, setImageLink] = useState("");
 
-  // console.log(
-  //   "currentProfile -> ",
-  //   currentProfile,
-  //   " and ",
-  //   "currentUser-> ",
-  //   currentUser
-  // )
+  const getImage = (event) => {
+    setCurrentImage(event.target.files[0]);
+  };
+
+  const uploadImage = () => {
+    uploadImageApI(currentImage, currentUser.id);
+  };
 
   useMemo(() => {
     getStatus(setAllStatus);
@@ -32,15 +35,24 @@ export default function ProfileCard({ currentUser, onEdit }) {
     }
   }, []);
 
+  // useEffect(() => {
+  //   editProfile(currentUser?.id, imageLink);
+  // }, [imageLink]);
+
+  // console.log("currentUser", currentUser);
+
   return (
     <>
       <div className="profile-card">
+        <input type="file" onChange={getImage} />
+        <button onClick={uploadImage}>Upload</button>
         <div className="edit-btn">
           <HiOutlinePencil className="edit-icon" onClick={onEdit} />
         </div>
 
         <div className="profile-info">
           <div>
+            <img className="profile-image" src={currentUser?.imageLink} />
             <h3 className="userName">
               {Object.values(currentProfile).length === 0
                 ? currentUser.name
