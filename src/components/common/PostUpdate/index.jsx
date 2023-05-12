@@ -52,10 +52,22 @@ export default function PostStatus({ currentUser }) {
   useMemo(() => {
     getStatus(setAllStatus);
   }, []);
+  // console.log("PostStatus : ", currentUser);
   // console.log("Available statuses are : ", allStatuses.status);
   return (
     <div className="post-status-main">
+      <div className="user-details">
+        <img src={currentUser.imageLink} alt="imageLink" />
+        <p className="name">{currentUser.name}</p>
+        <p className="headline">{currentUser.headline}</p>
+      </div>
       <div className="post-status">
+        <img
+          className="post-image"
+          src={currentUser.imageLink}
+          alt="imageLink"
+        />
+
         <Button
           className="open-post-modal"
           onClick={() => {

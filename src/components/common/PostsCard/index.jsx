@@ -7,7 +7,7 @@ import {
   deletePost,
 } from "../../../api/FirestoreAPIs";
 import LikeButton from "../LikeButton";
-import Alternate from "./asia2.jpg";
+// import Alternate from "./asia2.jpg";
 import { BsPencil, BsTrash } from "react-icons/bs";
 
 export default function PostsCard({ posts, id, getEditData }) {
@@ -16,10 +16,20 @@ export default function PostsCard({ posts, id, getEditData }) {
   const [allUsers, setAllUsers] = useState([]);
   useMemo(() => {
     getCurrentUser(setCurrentUser);
+    
     getAllUsers(setAllUsers);
   }, []);
-  console.log("PostCard : ", currentUser.id);
-  console.log("post", posts.userID);
+  // console.log("PostCard : ", currentUser.id);
+  // console.log("post", posts.userID);\
+
+  // console.log(
+  //   "single User",
+  //   allUsers.filter((user) => user.id === posts.userID)[0]
+  // );
+  // console.log(
+  //   "All users",
+  //   allUsers.filter((user) => user.id === posts.userID)
+  // );
   return (
     <div className="posts-card" key={id}>
       <div className="post-image-wrapper">
@@ -41,7 +51,8 @@ export default function PostsCard({ posts, id, getEditData }) {
               });
             }}
           >
-            {posts.userName}
+            {/* {allUsers.filter((user) => user.id === posts.userID)[0].name} */}
+            {currentUser.name}
           </p>
           <p className="timestamp">{posts.timeStamp}</p>
         </div>
