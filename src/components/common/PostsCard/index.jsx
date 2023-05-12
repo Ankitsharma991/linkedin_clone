@@ -28,6 +28,7 @@ export default function PostsCard({ posts, id, getEditData }) {
   //   "All users",
   //   allUsers.filter((user) => user.id === posts.userID)
   // );
+  console.log(posts);
   return (
     <>
       {currentUser && allUsers ? (
@@ -51,11 +52,20 @@ export default function PostsCard({ posts, id, getEditData }) {
                   });
                 }}
               >
-                {allUsers
-                  .filter((item) => item.id === posts.userID)
-                  .map((item) => item.name)[0]}
+                {
+                  allUsers
+                    .filter((item) => item.id === posts.userID)
+                    .map((item) => item.name)[0]
+                }
               </p>
-              <p className="timestamp">{posts.timeStamp}</p>
+              <p className="headline">
+                {
+                  allUsers
+                    .filter((item) => item.id === posts.userID)
+                    .map((item) => item.headline)[0]
+                }
+              </p>
+              <p className="timestamp">{posts.timestamp}</p>
             </div>
             {currentUser.id === posts.userID ? (
               <div className="action-container">

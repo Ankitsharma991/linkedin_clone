@@ -30,6 +30,15 @@
     margin: 0px 0 0 0px;
     cursor: pointer;
   }
+  .headline {
+    width: 250px;
+    overflow: hidden;
+    font-family: system-ui, sans-serif;
+    font: size 15px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    margin: 0px 0 0 0px;
+  }
 
   .timestamp {
     font-family: system-ui, sans-serif;
@@ -50,7 +59,7 @@
   .action-container {
     // position: absolute;
     // right: 20px;
-    margin-left: 180px;
+    margin-left: 120px;
     cursor: pointer;
     display: flex;
     top: 10px;
