@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { postStatus, getStatus } from "../../../api/FirestoreAPIs";
+import { postStatus, getStatus, updatePost } from "../../../api/FirestoreAPIs";
 import "./index.scss";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 import ModalComponent from "../Modal";
@@ -12,6 +12,8 @@ export default function PostStatus({ currentUser }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatuses, setAllStatus] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentPost, setCurrentPost] = useState({});
 
   const sendStatus = async () => {
     if (!currentUser || !currentUser.name) {
@@ -31,6 +33,20 @@ export default function PostStatus({ currentUser }) {
     await postStatus(object);
     await setModalOpen(false);
     await setStatus("");
+    setIsEdit(false);
+  };
+
+  const getEditData = (posts) => {
+    setModalOpen(true);
+    setStatus(posts?.status);
+    setCurrentPost(posts);
+    setIsEdit(true);
+  };
+
+  const updateStatus = () => {
+    console.log(status);
+    updatePost(currentPost.id, status);
+    setModalOpen(false);
   };
 
   useMemo(() => {
@@ -40,23 +56,31 @@ export default function PostStatus({ currentUser }) {
   return (
     <div className="post-status-main">
       <div className="post-status">
-        <Button className="open-post-modal" onClick={() => setModalOpen(true)}>
+        <Button
+          className="open-post-modal"
+          onClick={() => {
+            setIsEdit(false);
+            setModalOpen(true);
+          }}
+        >
           Start a Post
         </Button>
       </div>
       <ModalComponent
-        status={status}
         setStatus={setStatus}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
+        status={status}
         sendStatus={sendStatus}
+        isEdit={isEdit}
+        updateStatus={updateStatus}
       />
 
       <div>
         {allStatuses.map((posts) => {
           return (
             <div key={posts.id}>
-              <PostsCard posts={posts} />
+              <PostsCard posts={posts} getEditData={getEditData} />
             </div>
           );
         })}

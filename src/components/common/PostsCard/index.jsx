@@ -1,11 +1,16 @@
 import React, { useMemo, useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser, getAllUsers } from "../../../api/FirestoreAPIs";
+import {
+  getCurrentUser,
+  getAllUsers,
+  deletePost,
+} from "../../../api/FirestoreAPIs";
 import LikeButton from "../LikeButton";
 import Alternate from "./asia2.jpg";
+import { BsPencil, BsTrash } from "react-icons/bs";
 
-export default function PostsCard({ posts, id }) {
+export default function PostsCard({ posts, id, getEditData }) {
   let navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
   const [allUsers, setAllUsers] = useState([]);
@@ -13,8 +18,8 @@ export default function PostsCard({ posts, id }) {
     getCurrentUser(setCurrentUser);
     getAllUsers(setAllUsers);
   }, []);
-  // console.log("PostCard : ", currentUser);
-
+  console.log("PostCard : ", currentUser.id);
+  console.log("post", posts.userID);
   return (
     <div className="posts-card" key={id}>
       <div className="post-image-wrapper">
@@ -40,6 +45,22 @@ export default function PostsCard({ posts, id }) {
           </p>
           <p className="timestamp">{posts.timeStamp}</p>
         </div>
+        {currentUser.id === posts.userID ? (
+          <div className="action-container">
+            <BsPencil
+              size={20}
+              className="action-icon"
+              onClick={() => getEditData(posts)}
+            />
+            <BsTrash
+              size={20}
+              className="action-icon"
+              onClick={() => deletePost(posts.id)}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <p className="status">{posts.status}</p>
       <LikeButton
