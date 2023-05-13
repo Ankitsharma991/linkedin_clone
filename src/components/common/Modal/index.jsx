@@ -1,5 +1,6 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, Progress } from "antd";
 import { useState } from "react";
+import { AiOutlinePicture } from "react-icons/ai";
 import "./index.scss";
 const ModalComponent = ({
   setModalOpen,
@@ -9,7 +10,15 @@ const ModalComponent = ({
   status,
   isEdit,
   updateStatus,
+  uploadPostImage,
+  setPostImage,
+  postImage,
+  setCurrentPost,
+  currentPost,
 }) => {
+  // console.log(currentPost);
+  const [progress, setProgress] = useState(0);
+  // console.log(progress);
   return (
     <>
       <Modal
@@ -19,10 +28,16 @@ const ModalComponent = ({
         onOk={() => {
           setStatus("");
           setModalOpen(false);
+          setPostImage("");
+          setProgress(0);
+          setCurrentPost({});
         }}
         onCancel={() => {
           setModalOpen(false);
           setStatus("");
+          setPostImage("");
+          setProgress(0);
+          setCurrentPost({});
         }}
         footer={[
           <Button
@@ -35,13 +50,42 @@ const ModalComponent = ({
           </Button>,
         ]}
       >
+        <div className="posts-body">
+          <textarea
+            className="modal-input"
+            value={status}
+            onChange={(event) => {
+              setStatus(event.target.value);
+            }}
+            placeholder="What do you want to talk about?"
+          />
+          {progress === 0 || progress === 100 ? (
+            <></>
+          ) : (
+            <div className="progress-bar">
+              <Progress type="circle" percent={progress} />
+            </div>
+          )}
+          {postImage.length > 0 || currentPost?.postImage?.length ? (
+            <img
+              className="preview-image"
+              src={postImage || currentPost?.postImage}
+              alt="postImage"
+            />
+          ) : (
+            <></>
+          )}{" "}
+        </div>
+        <label for="pic-upload">
+          <AiOutlinePicture size={35} className="picture-icon" />
+        </label>
         <input
-          className="modal-input"
-          value={status}
-          onChange={(event) => {
-            setStatus(event.target.value);
-          }}
-          placeholder="What do you want to talk about?"
+          id="pic-upload"
+          type="file"
+          hidden
+          onChange={(event) =>
+            uploadPostImage(event.target.files[0], setPostImage, setProgress)
+          }
         />
       </Modal>
     </>

@@ -37,7 +37,7 @@ export default function PostsCard({ posts, id, getEditData }) {
   // );
   // console.log(posts);
 
-  return isConnected ? (
+  return isConnected || currentUser.id === posts.userID ? (
     <>
       {/* {currentUser && allUsers ? ( */}
       <div className="posts-card" key={id}>
@@ -92,6 +92,11 @@ export default function PostsCard({ posts, id, getEditData }) {
             <></>
           )}
         </div>
+        {posts.postImage ? (
+          <img src={posts.postImage} alt="post-image" />
+        ) : (
+          <></>
+        )}{" "}
         <p className="status">{posts.status}</p>
         <LikeButton
           userId={currentUser?.id}

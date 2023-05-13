@@ -1,10 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
-import {
-  postStatus,
-  getStatus,
-  updatePost,
-} from "../../../api/FirestoreAPIs";
+import { postStatus, getStatus, updatePost } from "../../../api/FirestoreAPIs";
 import "./index.scss";
+import { uploadPostImage } from "../../../api/imageUpload";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 import ModalComponent from "../Modal";
 import PostsCard from "../PostsCard/index.jsx";
@@ -18,12 +15,14 @@ export default function PostStatus({ currentUser }) {
   const [allStatuses, setAllStatus] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [currentPost, setCurrentPost] = useState({});
+  const [postImage, setPostImage] = useState("");
 
   const sendStatus = async () => {
     if (!currentUser || !currentUser.name) {
       alert("Username is null");
       return;
     }
+    // console.log(postImage);
 
     let object = {
       status: status,
@@ -32,6 +31,7 @@ export default function PostStatus({ currentUser }) {
       userName: currentUser.name,
       postID: getUniqueID(),
       userID: currentUser.id,
+      postImage: postImage,
     };
 
     await postStatus(object);
@@ -48,17 +48,15 @@ export default function PostStatus({ currentUser }) {
   };
 
   const updateStatus = () => {
-    console.log(status);
-    updatePost(currentPost.id, status);
+    // console.log(status);
+    updatePost(currentPost.id, status, postImage);
     setModalOpen(false);
   };
 
   useMemo(() => {
     getStatus(setAllStatus);
   }, []);
-
-
-
+// console.log(currentPost)
   return (
     <div className="post-status-main">
       <div className="user-details">
@@ -91,6 +89,11 @@ export default function PostStatus({ currentUser }) {
         sendStatus={sendStatus}
         isEdit={isEdit}
         updateStatus={updateStatus}
+        uploadPostImage={uploadPostImage}
+        setPostImage={setPostImage}
+        postImage={postImage}
+        setCurrentPost={setCurrentPost}
+        currentPost={currentPost}
       />
 
       <div>

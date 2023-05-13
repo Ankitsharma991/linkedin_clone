@@ -169,10 +169,10 @@ export const getAllUsers = (setAllUsers) => {
   });
 };
 
-export const updatePost = (id, status) => {
+export const updatePost = (id, status, postImage) => {
   let docToUpdate = doc(postsRef, id);
   try {
-    updateDoc(docToUpdate, { status });
+    updateDoc(docToUpdate, { status, postImage });
     toast.success("Post has been updated!!");
   } catch (err) {
     console.log(err);
@@ -217,6 +217,6 @@ export const getConnections = (userId, targetId, setIsConnected) => {
       setIsConnected(isConnected);
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
   }
 };
