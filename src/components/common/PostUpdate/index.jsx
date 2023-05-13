@@ -1,5 +1,9 @@
-import React, { useMemo, useState } from "react";
-import { postStatus, getStatus, updatePost } from "../../../api/FirestoreAPIs";
+import React, { useMemo, useState, useEffect } from "react";
+import {
+  postStatus,
+  getStatus,
+  updatePost,
+} from "../../../api/FirestoreAPIs";
 import "./index.scss";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 import ModalComponent from "../Modal";
@@ -52,8 +56,9 @@ export default function PostStatus({ currentUser }) {
   useMemo(() => {
     getStatus(setAllStatus);
   }, []);
-  // console.log("PostStatus : ", currentUser);
-  // console.log("Available statuses are : ", allStatuses.status);
+
+
+
   return (
     <div className="post-status-main">
       <div className="user-details">
