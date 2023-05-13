@@ -41,3 +41,40 @@
   top: 65px;
   z-index: 99;
 }
+
+.search-results {
+  width: 290px;
+  max-height: 300px;
+  min-height: auto;
+  background-color: white;
+  position: absolute;
+  left: 100px;
+  top: 60px;
+  border-radius: 10px;
+  border: 1px solid #bbbbbb;
+  overflow: scroll;
+  .search-inner {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 10px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 10px;
+    img {
+      width: 40px;
+      height: 40px;
+      background-color: #797474;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .name {
+      font-family: system-ui;
+      font-size: 18px;
+    }
+  }
+  .search-inner:hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+  }
+}

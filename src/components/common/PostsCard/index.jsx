@@ -8,7 +8,6 @@ import {
   getConnections,
 } from "../../../api/FirestoreAPIs";
 import LikeButton from "../LikeButton";
-// import Alternate from "./asia2.jpg";
 import { BsPencil, BsTrash } from "react-icons/bs";
 
 export default function PostsCard({ posts, id, getEditData }) {
@@ -57,7 +56,7 @@ export default function PostsCard({ posts, id, getEditData }) {
               className="name"
               onClick={() => {
                 navigate("/profile", {
-                  state: { id: posts?.id, email: posts.userEmail },
+                  state: { id: posts.userID, email: posts.userEmail },
                 });
               }}
             >
