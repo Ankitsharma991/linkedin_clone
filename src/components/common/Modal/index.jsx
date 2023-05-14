@@ -1,6 +1,7 @@
 import { Button, Modal, Progress } from "antd";
 import { useState } from "react";
 import { AiOutlinePicture } from "react-icons/ai";
+import ReactQuill from "react-quill";
 import "./index.scss";
 const ModalComponent = ({
   setModalOpen,
@@ -51,13 +52,12 @@ const ModalComponent = ({
         ]}
       >
         <div className="posts-body">
-          <textarea
+          <ReactQuill
             className="modal-input"
+            theme="snow"
+            placeholder="Share some of your useful thoughts here..."
             value={status}
-            onChange={(event) => {
-              setStatus(event.target.value);
-            }}
-            placeholder="What do you want to talk about?"
+            onChange={setStatus}
           />
           {progress === 0 || progress === 100 ? (
             <></>

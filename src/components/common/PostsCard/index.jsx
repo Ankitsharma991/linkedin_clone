@@ -9,12 +9,14 @@ import {
 } from "../../../api/FirestoreAPIs";
 import LikeButton from "../LikeButton";
 import { BsPencil, BsTrash } from "react-icons/bs";
+import { Modal, Button } from "antd";
 
 export default function PostsCard({ posts, id, getEditData }) {
   let navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
   const [allUsers, setAllUsers] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
+  const [imageModal, setImageModal] = useState(false);
 
   // const displayUser = () => {
   //   console.log(allUsers.filter((user) => user.id === posts.userID)[0]);
@@ -43,7 +45,7 @@ export default function PostsCard({ posts, id, getEditData }) {
       <div className="posts-card" key={id}>
         <div className="post-image-wrapper">
           <img
-            className="post-image"
+            className="profile-image"
             src={
               allUsers
                 .filter((item) => item.id === posts.userID)
@@ -93,16 +95,40 @@ export default function PostsCard({ posts, id, getEditData }) {
           )}
         </div>
         {posts.postImage ? (
-          <img src={posts.postImage} alt="post-image" />
+          <img
+            src={posts.postImage}
+            className="post-image"
+            onClick={() => setImageModal(true)}
+            alt="post-image"
+          />
         ) : (
           <></>
         )}{" "}
-        <p className="status">{posts.status}</p>
+        <p
+          className="status"
+          dangerouslySetInnerHTML={{ __html: posts.status }}
+        ></p>
         <LikeButton
           userId={currentUser?.id}
           postId={posts.id}
           currentUser={currentUser}
         />
+        <Modal
+          centered
+          open={imageModal}
+          footer={[]}
+          onOk={() => {
+            setImageModal(false);
+          }}
+          onCancel={() => setImageModal(false)}
+        >
+          <img
+            src={posts.postImage}
+            className="post-image modal"
+            onClick={() => setImageModal(true)}
+            alt="post-image"
+          />
+        </Modal>
       </div>
       {/* ) : (
          ""

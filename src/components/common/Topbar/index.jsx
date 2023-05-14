@@ -15,7 +15,7 @@ import { getAllUsers } from "../../../api/FirestoreAPIs";
 import { useNavigate } from "react-router-dom";
 import ProfilePopup from "../ProfilePopup";
 
-export default function Topbar() {
+export default function Topbar({ currentUser }) {
   let navigate = useNavigate();
   const goToRoute = (route) => {
     navigate(route);
@@ -104,7 +104,7 @@ export default function Topbar() {
         </div>
       )}
       <img
-        src={user}
+        src={currentUser.imageLink}
         onClick={() => {
           popup();
         }}

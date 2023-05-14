@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./Routes/Index";
 import "./Sass/LoginComponent.scss";
 import { app } from "./firebaseConfig";
+import 'react-quill/dist/quill.snow.css'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
